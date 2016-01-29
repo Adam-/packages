@@ -1,0 +1,16 @@
+[Unit]
+After=network.target
+Description=ircd-hybrid
+Requires=network.target
+
+[Service]
+User=ircd
+ExecReload=/bin/kill -HUP $MAINPID
+ExecStart=/usr/bin/ircd
+ExecStop=/bin/kill -TERM $MAINPID
+PIDFile=/var/ircd/run/ircd.pid
+Restart=on-failure
+Type=forking
+
+[Install]
+WantedBy=multi-user.target
