@@ -1,5 +1,5 @@
 Name:           ircd-hybrid
-Version:        8.2.12
+Version:        8.2.13
 Release:        1%{?dist}
 Summary:        A lightweight, high-performance internet relay chat daemon.
 
@@ -10,7 +10,7 @@ Source0:        https://github.com/ircd-hybrid/ircd-hybrid/archive/%{version}.ta
 Source1:        hybrid.service
 Source2:        ircd.conf
 
-#Requires: gnutls
+Requires: gnutls
 Requires(pre): shadow-utils
 Requires(post): systemd
 Requires(preun): systemd
@@ -48,8 +48,7 @@ systemctl reset-failed
 %setup -q
 
 %build
-#%configure --disable-openssl --enable-gnutls
-%configure --disable-openssl --localstatedir=/var/ircd
+%configure --disable-openssl --enable-gnutls --localstatedir=/var/ircd
 make %{?_smp_mflags}
 
 
@@ -78,6 +77,9 @@ install %{SOURCE2} $RPM_BUILD_ROOT/etc/
 
 
 %changelog
+* Tue Feb 02 2016 Adam <Adam@anope.org> - 8.2.13
+- Add GnuTLS support
+
 * Wed Jan 27 2016 Adam <Adam@anope.org>
 - Initial release
 
