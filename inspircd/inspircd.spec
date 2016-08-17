@@ -1,9 +1,9 @@
 Name:           inspircd
-Version:        2.0.20
-Release:        2%{?dist}
+Version:        2.0.22
+Release:        1%{?dist}
 Summary:        InspIRCd is a modular Internet Relay Chat (IRC) server
 
-License:        GPL
+License:        GPLv2
 URL:            http://inspircd.org
 
 Source0:        https://github.com/inspircd/inspircd/archive/v%{version}.tar.gz
@@ -18,7 +18,7 @@ Requires(pre): shadow-utils
 Requires(post): systemd
 Requires(preun): systemd
 Requires(postun): systemd
-BuildRequires: systemd
+BuildRequires: systemd,gnutls-devel
 
 
 %description
@@ -88,9 +88,3 @@ install %{SOURCE5} $RPM_BUILD_ROOT/etc/inspircd/
 
 
 %changelog
-* Fri Jan 22 2016 Adam <Adam@anope.org> - 2.0.20-2
-- Add gnutls
-
-* Thu Jan 21 2016 Adam <Adam@anope.org> 2.0.20
-- Initial release
-- 
